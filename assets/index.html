@@ -66,14 +66,7 @@
                             </div>
                         </div>
                       <div class="columns is-desktop">
-                            <div class="column is-four-fifths">
-                                <div class="field">
-                                    <div class="control">
-                                        <label for="key-box" id="key-box-label">https://tiiny.tk/</label>
-                                        <input class="input" type="text theme-color" id="key-box">
-                                    </div>
-                                </div>
-                            </div>
+      
                             <div class="column">
                                 <div class="field">
                                     <div class="control">
@@ -126,7 +119,7 @@
         
         
         $(document).ready(function() {
-            const url_prefix = $('#key-box-label').text();
+            const url_prefix = window.location;
             $('#shortner').submit((event) => {
                 event.preventDefault();
                 var settings = {
