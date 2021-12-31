@@ -81,6 +81,14 @@
                         </div>
                     </form>
                 </div>
+                
+                
+            <div id="main2">
+                
+            </div>
+                
+                
+                
                 <div id="alert-modal" class="modal" onclick="$(this).removeClass('is-active')">
                     <div class="modal-background"></div>
                     <div class="modal-content">
@@ -130,7 +138,7 @@
                 $('#submit-button').addClass('is-loading');
                 $.ajax(settings)
                 .done((response) => {
-                    $('#main').html(`
+                    $('#main2').html(`
                         <div class="columns is-desktop">
                         <div class="column is-four-fifths">
                         <input id="shortened-url" type="text" class="input is-success" value="${url_prefix}${response}" readonly>
