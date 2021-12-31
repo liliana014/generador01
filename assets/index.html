@@ -40,16 +40,7 @@
                 <div id="main" >
                     <form id="shortner">
                       
-                       <div class="columns is-desktop">
-                            <div class="column is-full">
-                                <div class="field">
-                                    <div class="control">
-                                        <input id="cottorra" class="input is-primary" type="url" placeholder="Cottorra" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                     
+  
                         <div class="columns is-desktop">
                             <div class="column is-full">
                                 <div class="field">
@@ -135,7 +126,7 @@
                         "Content-Type": "application/json"
                     }
                 };
-                $('#submit-button').addClass('is-loading');
+                $('#submit-button');
                 $.ajax(settings)
                 .done((response) => {
                     $('#main2').html(`
@@ -154,7 +145,7 @@
                 })
                 .fail((xhr, status, error) => {
                     errorAlert(xhr.responseText);
-                    $("#submit-button").removeClass("is-loading");
+                    $("#submit-button");
                 });
             });
             $(".navbar-burger").click(function() {
