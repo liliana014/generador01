@@ -76,7 +76,7 @@
                                 <div class="field">
                                     <div class="control">
                                         <button id="submit-button" onclick="shorturl()" class="button is-primary is-fullwidth is-uppercase has-text-weight-bold" type="submit">
-                                            Submit
+                                             Generar Link 
                                         </button>
                                     </div>
                                 </div>
@@ -89,9 +89,7 @@
             <div id="main2">
                 
             </div>
-                
-                
-                
+                 
                 <div id="alert-modal" class="modal" onclick="$(this).removeClass('is-active')">
                     <div class="modal-background"></div>
                     <div class="modal-content">
@@ -125,6 +123,7 @@
         
         $(document).ready(function() {
             const url_prefix = window.location;
+            const url_cottorra = "ça te ressemble ";
             $('#shortner').submit((event) => {
                 event.preventDefault();
                 var settings = {
@@ -143,17 +142,10 @@
                 $.ajax(settings)
                 .done((response) => {
                     $('#main2').html(`
-                        
                         <div class="columns is-desktop">
                         <div class="column is-four-fifths">
-                        <input id="shortened-url" type="text" class="input is-success" value="${url_prefix}${response}" readonly>
+                        <input id="shortened-url" type="text" class="input is-success" value="${url_cottorra}${url_prefix}${response}" readonly>
                         </div>
-                        <div class="column">
-                        <button id="copy-button" onclick="copy_url()" class="button is-success has-text-weight-bold is-fullwidth is-uppercase">Copy</button>
-                        </div>
-                        </div>
-                        <div class="has-text-centered">
-                        <a class="is-size-7" onclick="window.location.reload()">Shorten another URL</a>
                         </div>
                         `);
                 })
