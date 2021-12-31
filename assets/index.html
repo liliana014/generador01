@@ -59,7 +59,15 @@
 
                 <div id="main" >
                     <form id="shortner">
-                      
+                          <div class="columns is-desktop">
+                            <div class="column is-full">
+                                <div class="field">
+                                    <div class="control">
+                                        <input id="cotorra" class="input is-primary" type="url" placeholder="Cotorra" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                    
   
                         <div class="columns is-desktop">
                             <div class="column is-full">
@@ -123,7 +131,7 @@
         
         $(document).ready(function() {
             const url_prefix = window.location;
-            const url_cottorra = "ça te ressemble ";
+            const url_cottorra = document.querySelector("#cottorra").value + " ";
             $('#shortner').submit((event) => {
                 event.preventDefault();
                 var settings = {
@@ -142,11 +150,17 @@
                 $.ajax(settings)
                 .done((response) => {
                     $('#main2').html(`
-                        <div class="columns is-desktop">
-                        <div class="column is-four-fifths">
-                        <input id="shortened-url" type="text" class="input is-success is-fullwidth" value="${url_cottorra}${url_prefix}${response}" readonly>
-                        </div>
-                        </div>
+                         <div class="columns is-desktop">
+                            <div class="column is-full">
+                                <div class="field">
+                                    <div class="control">
+                                         <input id="shortened-url" type="text" class="input is-success" value="${url_cottorra}${url_prefix}${response}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                      
+
+
                         `);
                     
                       document.getElementById("url-box").style.visibility = "hidden";
