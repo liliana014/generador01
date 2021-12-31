@@ -39,6 +39,7 @@
 
                 <div id="main" >
                     <form id="shortner">
+                      <!--
                        <div class="columns is-desktop">
                             <div class="column is-full">
                                 <div class="field">
@@ -48,8 +49,7 @@
                                 </div>
                             </div>
                         </div>
-
-                       
+                     -->
                         <div class="columns is-desktop">
                             <div class="column is-full">
                                 <div class="field">
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                         </div>
-                                                    <div class="column">
+                                <div class="column">
                                 <div class="field">
                                     <div class="control">
                                         <button id="submit-button" class="button is-primary is-fullwidth is-uppercase has-text-weight-bold" type="submit">
@@ -143,12 +143,19 @@
                     $('#main').html(`
                         <div class="columns is-desktop">
                         <div class="column is-four-fifths">
-                        <input id="shortened-url" type="text" class="input is-success" value="${url_prefix}${response}" readonly>
+                        <input id="url-box" class="input is-primary" type="url" value="${url_prefix}${response}">
                         </div>
                         <div class="column">
                         <button id="copy-button" onclick="copy_url()" class="button is-success has-text-weight-bold is-fullwidth is-uppercase">Copy</button>
                         </div>
                         </div>
+                                <div class="column">
+                                <div class="field">
+                                    <div class="control">
+                                        <button id="submit-button" class="button is-primary is-fullwidth is-uppercase has-text-weight-bold" type="submit">
+                                            Submit
+                                        </button>
+                                    </div>
                         <div class="has-text-centered">
                         <a class="is-size-7" onclick="window.location.reload()">Shorten another URL</a>
                         </div>
