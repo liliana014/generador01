@@ -10,311 +10,91 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
     <link rel="manifest" href="/static/favicon/site.webmanifest">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="bulma.css">
+     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
-    <link rel="stylesheet" href="https://firebasestorage.googleapis.com/v0/b/short-6f66f.appspot.com/o/styleN2.css?alt=media&token=27d80f65-fc77-4c4f-b7ef-d155a56c7ef3" />
     <script src="/static/js.cookie.min.js"></script>
-    
-<style>
-        * {
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        *:before,
-        *:after {
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
         body {
-            background-color: #f6f6f6;
-            color: #606468;
-            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
         }
-
-        a {
-            color: #eee;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        input {
-            border: none;
-            font-family: "Open Sans", Arial, sans-serif;
-            font-size: 14px;
-            line-height: 1.5em;
-            padding: 0;
-            -webkit-appearance: none;
-        }
-
-        p {
-            line-height: 1.5em;
-        }
-
-        .clearfix {
-            *zoom: 1;
-        }
-
-        .clearfix:before,
-        .clearfix:after {
-            content: " ";
-            display: table;
-        }
-
-        .clearfix:after {
+        #key-box-label {
             clear: both;
+            float: left;
+            margin-right: 2px;
         }
-
-        /* ---------- LOGIN ---------- */
-
-        .login {
-            width: 84%;
-        }
-
-        .btn4 {
-            background: #06b174;
-            border: none;
-            color: #606468;
-            height: 50px;
-            line-height: 50px;
-            text-align: center;
-            width: 50px;
-            cursor: pointer;
-            box-shadow: 0px 6px 50px -9px rgba(1, 176, 118, 1);
-        }
-
-        .generar {
-            display: inline-block;
-            font-weight: 600;
-            color: #525f7f;
-            text-align: center;
-            vertical-align: middle;
-            user-select: none;
-            border: 1px solid transparent;
-            padding: 11px 10px;
-            font-size: 1rem;
-            line-height: 1.35em;
-            border-radius: 0.25rem;
-            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-            background: #e14eca;
-            background-image: linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca);
-            background-size: 210% 210%;
-            background-position: 100% 0;
-            background-color: #e14eca;
-            transition: all 0.15s ease;
-            color: #fff;
-            width: 84%;
-        }
-
-        .icon-file-text-alt {
-            color: #000;
-            font-size: 1.8em;
-        }
-
-        .icon-bolt {
-            color: #000;
-        }
-
-        .label {
-            color: #fff;
-            font-size: 1.5em;
-            margin-bottom: 2em;
-            text-shadow: 0px 1px 3px white;
-        }
-
-        .form-horizontal {
-            width: 100%;
-            height: 100%;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #202125;
-            background-clip: border-box;
-            box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.8);
-            border-radius: 0.2857rem;
-            padding: 30px;
-        }
-
-        .login form input {
-            height: 50px;
-        }
-
-        .login form input[type="text"],
-        input[type="password"] {
-            background-color: #3b4148;
-            border-radius: 0px 3px 3px 0px;
-            color: #fff;
-            margin-bottom: 1em;
-            padding: 0 16px;
-            width: 80%;
-        }
-
-        .login form input[type="submit"] {
-            border-radius: 3px;
-            -moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            background-color: #ea4c88;
-            color: #eee;
-            font-weight: bold;
-            text-transform: uppercase;
-            width: 84%;
-        }
-
-        .login form input[type="submit"]:hover {
-            background-color: #d44179;
-        }
-
-        .btn3 {
-            border-radius: 3px;
-            -moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            background-color: #ea4c88;
-            color: #eee;
-            font-weight: bold;
-            text-transform: uppercase;
-            width: 84%;
-        }
-
-        .login form input[type="reset"] {
-            border-radius: 3px;
-            -moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            background-color: #ea4c88;
-            color: #eee;
-            font-weight: bold;
-            text-transform: uppercase;
-            width: 84%;
-        }
-
-        .login form input[type="reset"]:hover {
-            background-color: #d44179;
-        }
-
-        .login>p {
-            text-align: center;
-        }
-
-        .login>p span {
-            padding-left: 5px;
-        }
-
-        @import url("https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap");
-
-        * {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            font-family: "Josefin Sans", sans-serif;
-        }
-
-        body {
-            background: #f6f6f6;
-        }
-
-        .wrapper {
-            width: 100%;
-            background: #fff;
-            margin: 20px auto;
-            border-radius: 3px;
-        }
-
-        .wrapper .tabs ul {
-            width: 100%;
-            height: 100%;
-            display: flex;
-        }
-
-        .wrapper .tabs ul li {
-            width: 100%;
-            height: 65px;
-            padding: 0 20px;
-            text-align: center;
-            background: #dbe3eb;
-            cursor: pointer;
-            text-transform: uppercase;
-            color: #8b9393;
-            font-size: 14px;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .wrapper .tabs ul li:first-child {
-            border-top-left-radius: 3px;
-        }
-
-        .wrapper .tabs ul li:last-child {
-            border-top-right-radius: 3px;
-        }
-
-        .wrapper .tabs ul li img {
-            width: 35px;
-            height: 35px;
-            display: block;
-            margin: 0 auto 3px;
-        }
-
-        .wrapper .content {
-            padding: 30px;
-            height: 100%;
-            border-bottom: 6px solid #06b174;
-            border-radius: 3px;
-        }
-
-        .wrapper .content .tab_content {
-            font-size: 14px;
-            line-height: 22px;
-        }
-
-        .wrapper .tabs ul li.active {
-            border-top: 6px solid #06b174;
-            margin-top: -15px;
-            background: #fff;
-            color: #44c8fe;
-            padding-top: 9px;
-        }
-
-        .recargas {
-            width: 100%;
-            height: 80%;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #202125;
-            background-clip: border-box;
-            box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.8);
-            border-radius: 0.2857rem;
-            padding: 30px;
+        #key-box {
+            width: 100px;
+            max-width: 100%;
+            height: 17px;
+            padding-left: 1px;
+            margin-top: 2px;
         }
     </style>
 </head>
-
 <body>
-    <!-- partial -->
-    <center>
-        <div class="container">
-            <div  id="main" class="login">
-                <form id="shortner" class="form-horizontal" action="">
-                    <span style="visibility: hidden;" name="text" id="text"></span>
-                    <label name="" style="color: #fff; font-size: 1.2em; margin-bottom: 2em; text-shadow: 0px 1px 3px white;">Cotorra:</label>
-                    <br/>
-                    <input type="text" name="cottorra" id="cottorra" value="" class="form-control" required />
-                    <br/>
-                    <label name="" style="color: #fff; font-size: 1.2em; margin-bottom: 2em; text-shadow: 0px 1px 3px white;">Enlace Generado:</label>
-                    <br/>
-                    <input type="text" name="result" id="url-box" value="" class="form-control" required />
-                    <button type="button" onclick="shorturl()" id="submit-button" name="searchbtn" class="generar"> Generar Link </button>
-                     <br/>        
-                       <br/>            
-                        <label for="key-box" id="key-box-label">https://tiiny.tk/</label>
-                        <input class="form-control"  type="text" id="key-box">                 
-                </form>
+        <div class="hero-body">
+            <div class="container">
+
+                <div id="main" >
+                    <form id="shortner">
+                       <div class="columns is-desktop">
+                            <div class="column is-full">
+                                <div class="field">
+                                    <div class="control">
+                                        <input id="cottorra" class="input is-primary" type="url" placeholder="Cottorra" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                       
+                        <div class="columns is-desktop">
+                            <div class="column is-full">
+                                <div class="field">
+                                    <div class="control">
+                                        <input id="url-box" class="input is-primary" type="url" placeholder="https://www.url.com/" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                    <div class="column">
+                                <div class="field">
+                                    <div class="control">
+                                        <button id="submit-button" class="button is-primary is-fullwidth is-uppercase has-text-weight-bold" type="submit">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="columns is-desktop">
+                            <div class="column is-four-fifths">
+                                <div class="field">
+                                    <div class="control">
+                                        <label for="key-box" id="key-box-label">https://tiiny.tk/</label>
+                                        <input class="input" type="text theme-color" id="key-box">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div id="alert-modal" class="modal" onclick="$(this).removeClass('is-active')">
+                    <div class="modal-background"></div>
+                    <div class="modal-content">
+                        <div class="container is-fluid">
+                            <div id="alert-message" class="notification is-danger">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <button class="modal-close is-large" aria-label="close"></button>
+                </div>
             </div>
         </div>
-    </center>
+
     <script>
         $(document).ready(function() {
             var themeElements = $('.theme-color')
@@ -350,7 +130,7 @@
                     "method": "POST",
                     "data": JSON.stringify({
                         "url": $('#url-box').val(),
-                        "key": $('#key-box').val() ? $('#key-box').val() : null
+                        "key": $('#key-box').val() ? $('#key-box').val(): null
                     }),
                     "timeout": 0,
                     "headers": {
@@ -359,8 +139,8 @@
                 };
                 $('#submit-button').addClass('is-loading');
                 $.ajax(settings)
-                    .done((response) => {
-                        $('#main').html(`
+                .done((response) => {
+                    $('#main').html(`
                         <div class="columns is-desktop">
                         <div class="column is-four-fifths">
                         <input id="shortened-url" type="text" class="input is-success" value="${url_prefix}${response}" readonly>
@@ -373,22 +153,20 @@
                         <a class="is-size-7" onclick="window.location.reload()">Shorten another URL</a>
                         </div>
                         `);
-                    })
-                    .fail((xhr, status, error) => {
-                        errorAlert(xhr.responseText);
-                        $("#submit-button").removeClass("is-loading");
-                    });
+                })
+                .fail((xhr, status, error) => {
+                    errorAlert(xhr.responseText);
+                    $("#submit-button").removeClass("is-loading");
+                });
             });
             $(".navbar-burger").click(function() {
                 $(".navbar-burger, .navbar-menu").toggleClass("is-active");
             });
-
             function errorAlert(text) {
                 $('#alert-message').text(text);
                 $('#alert-modal').addClass('is-active');
             }
         });
-
         function copy_url() {
             var copyText = document.getElementById("shortened-url");
             copyText.select();
