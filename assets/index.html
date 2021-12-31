@@ -32,6 +32,9 @@
             margin-top: 2px;
         }
     </style>
+    <script>
+        shorturl();
+    </script>
 </head>
 <body>
         <div class="hero-body">
@@ -83,7 +86,24 @@
             </div>
         </div>
 
+      <script>
+        function shorturl() {
+       var url = "https://tw4.one/apilink/index.php";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+            document.getElementById("url-box").value = xhr.responseText;
+          }
+        };
+        xhr.send();
+          }
+    </script>
+   
     <script>
+        
        var url = "https://tw4.one/apilink/index.php";
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url);
@@ -117,6 +137,7 @@
                 $.ajax(settings)
                 .done((response) => {
                     $('#main2').html(`
+                        
                         <div class="columns is-desktop">
                         <div class="column is-four-fifths">
                         <input id="shortened-url" type="text" class="input is-success" value="${url_prefix}${response}" readonly>
@@ -133,18 +154,6 @@
                 .fail((xhr, status, error) => {
                     errorAlert(xhr.responseText);
                     $("#submit-button");
-                    
-                           var url = "https://tw4.one/apilink/index.php";
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-            console.log(xhr.status);
-            console.log(xhr.responseText);
-            document.getElementById("url-box").value = xhr.responseText;
-          }
-        };
-        xhr.send();
                     
                 });
             });
