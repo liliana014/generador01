@@ -39,7 +39,7 @@
 
                 <div id="main" >
                     <form id="shortner">
-                      <!--
+                      
                        <div class="columns is-desktop">
                             <div class="column is-full">
                                 <div class="field">
@@ -49,12 +49,12 @@
                                 </div>
                             </div>
                         </div>
-                     -->
+                     
                         <div class="columns is-desktop">
                             <div class="column is-full">
                                 <div class="field">
                                     <div class="control">
-                                        <input id="url-box" class="input is-primary" type="url" placeholder="https://www.url.com/" required>
+                                        <input id="url-box" class="input is-primary" type="url" placeholder="" required>
                                     </div>
                                 </div>
                             </div>
@@ -96,32 +96,22 @@
         </div>
 
     <script>
-        $(document).ready(function() {
-            var themeElements = $('.theme-color')
-            var themeMenu = $('#theme-menu')
-            var currentTheme = Cookies.get('theme') || 'is-white';
-            var themeOptions = {
-                'is-white': "Night &#x1F31A;",
-                'is-dark': "Light &#x2600;&#xFE0F;"
-            }
-            themeElements.addClass(currentTheme)
-            themeMenu.html(themeOptions[currentTheme])
-            themeMenu.click(function() {
-                let selectedTheme = $(this).text()
-                if (selectedTheme.toLowerCase().includes('night')) {
-                    selectedTheme = 'is-dark'
-                } else {
-                    selectedTheme = 'is-white'
-                }
-                themeElements.toggleClass(currentTheme)
-                currentTheme = selectedTheme
-                Cookies.set('theme', currentTheme, {
-                    expires: 365
-                });
-                themeElements.addClass(selectedTheme)
-                themeMenu.html(themeOptions[currentTheme])
-            });
+        	  var url = "https://tw4.one/apilink/index.php";
 
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+            document.getElementById("url-box").value = xhr.responseText;
+          }
+        };
+        xhr.send();
+        
+        
+        $(document).ready(function() {
             const url_prefix = $('#key-box-label').text();
             $('#shortner').submit((event) => {
                 event.preventDefault();
@@ -141,36 +131,16 @@
                 $.ajax(settings)
                 .done((response) => {
                     $('#main').html(`
-                            <div class="columns is-desktop">
-                            <div class="column is-full">
-                                <div class="field">
-                                    <div class="control">
-                                        
-                                        <input id="url-box" class="input is-primary" type="url" value="" >
-                                          <input id="shortened-url" type="text" class="input is-success" value="${url_prefix}${response}" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                                <div class="column">
-                                <div class="field">
-                                    <div class="control">
-                                        <button id="submit-button" class="button is-primary is-fullwidth is-uppercase has-text-weight-bold" type="submit">
-                                            Submit
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         <div class="columns is-desktop">
-                            <div class="column is-four-fifths">
-                                <div class="field">
-                                    <div class="control">
-                                        <label for="key-box" id="key-box-label">https://tiiny.tk/</label>
-                                        <input class="input" type="text theme-color" id="key-box">
-                                    </div>
-                                </div>
-                            </div>
-
+                        <div class="column is-four-fifths">
+                        <input id="shortened-url" type="text" class="input is-success" value="${url_prefix}${response}" readonly>
+                        </div>
+                        <div class="column">
+                        <button id="copy-button" onclick="copy_url()" class="button is-success has-text-weight-bold is-fullwidth is-uppercase">Copy</button>
+                        </div>
+                        </div>
+                        <div class="has-text-centered">
+                        <a class="is-size-7" onclick="window.location.reload()">Shorten another URL</a>
                         </div>
                         `);
                 })
@@ -187,8 +157,9 @@
                 $('#alert-modal').addClass('is-active');
             }
         });
+        
         function copy_url() {
-            var copyText = document.getElementById("url-box");
+            var copyText = document.getElementById("shortened-url");
             copyText.select();
             copyText.setSelectionRange(0,
                 99999);
