@@ -86,12 +86,16 @@
                 </div>
                 
                 
-            <div id="main2"></div>              
+            <div id="main2">
+                
+            </div>
+                 
                 <div id="alert-modal" class="modal" onclick="$(this).removeClass('is-active')">
                     <div class="modal-background"></div>
                     <div class="modal-content">
                         <div class="container is-fluid">
-                            <div id="alert-message" class="notification is-danger">                               
+                            <div id="alert-message" class="notification is-danger">
+                                
                             </div>
                         </div>
                     </div>
@@ -102,7 +106,8 @@
 
 
    
-    <script>     
+    <script>
+        
        var url = "https://tw4.one/apilink/index.php";
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url);
@@ -139,11 +144,12 @@
                     $('#main2').html(`
                         <div class="columns is-desktop">
                         <div class="column is-four-fifths">
-                        <input id="shortened-url" type="text" class="button is-primary is-fullwidth is-uppercase has-text-weight-bold" value="${url_cottorra}${url_prefix}${response}" readonly>
+                        <input id="shortened-url" type="text" class="input is-success is-fullwidth" value="${url_cottorra}${url_prefix}${response}" readonly>
                         </div>
                         </div>
                         `);
-                    document.getElementById("url-box").style.visibility = "hidden";
+                    
+                      document.getElementById("url-box").style.visibility = "hidden";
                 })
                 .fail((xhr, status, error) => {
                     errorAlert(xhr.responseText);
