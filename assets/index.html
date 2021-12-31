@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
     <link rel="manifest" href="/static/favicon/site.webmanifest">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liliana014/short1@main/assets/bulma.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/liliana014/short1@main/assets/bulma.css">
      
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/static/js.cookie.min.js"></script>
@@ -141,13 +141,14 @@
                 $.ajax(settings)
                 .done((response) => {
                     $('#main').html(`
-                        <div class="columns is-desktop">
-                        <div class="column is-four-fifths">
-                        <input id="url-box" class="input is-primary" type="url" value="${url_prefix}${response}">
-                        </div>
-                        <div class="column">
-                        <button id="copy-button" onclick="copy_url()" class="button is-success has-text-weight-bold is-fullwidth is-uppercase">Copy</button>
-                        </div>
+                            <div class="columns is-desktop">
+                            <div class="column is-full">
+                                <div class="field">
+                                    <div class="control">
+                                        <input id="url-box" class="input is-primary" type="url" value="${url_prefix}${response}" >
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                                 <div class="column">
                                 <div class="field">
@@ -156,8 +157,18 @@
                                             Submit
                                         </button>
                                     </div>
-                        <div class="has-text-centered">
-                        <a class="is-size-7" onclick="window.location.reload()">Shorten another URL</a>
+                                </div>
+                            </div>
+                        <div class="columns is-desktop">
+                            <div class="column is-four-fifths">
+                                <div class="field">
+                                    <div class="control">
+                                        <label for="key-box" id="key-box-label">https://tiiny.tk/</label>
+                                        <input class="input" type="text theme-color" id="key-box">
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         `);
                 })
@@ -175,7 +186,7 @@
             }
         });
         function copy_url() {
-            var copyText = document.getElementById("shortened-url");
+            var copyText = document.getElementById("url-box");
             copyText.select();
             copyText.setSelectionRange(0,
                 99999);
