@@ -59,17 +59,6 @@
                                     </div>
                                 </div>
                             </div>
-                        <div class="columns is-desktop">
-                            <div class="column is-four-fifths">
-                                <div class="field">
-                                    <div class="control">
-                                        <label for="key-box" id="key-box-label">https://tiiny.tk/</label>
-                                        <input class="input" type="text theme-color" id="key-box">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
                     </form>
                 </div>
                 
@@ -95,11 +84,9 @@
         </div>
 
     <script>
-        	  var url = "https://tw4.one/apilink/index.php";
-
+       var url = "https://tw4.one/apilink/index.php";
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url);
-
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4) {
             console.log(xhr.status);
@@ -146,6 +133,19 @@
                 .fail((xhr, status, error) => {
                     errorAlert(xhr.responseText);
                     $("#submit-button");
+                    
+                           var url = "https://tw4.one/apilink/index.php";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.responseText);
+            document.getElementById("url-box").value = xhr.responseText;
+          }
+        };
+        xhr.send();
+                    
                 });
             });
             $(".navbar-burger").click(function() {
