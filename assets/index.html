@@ -36,7 +36,7 @@
 		  
         function shorturl() {
 
-	var cottorra =  document.querySelector("#cottorra").text;
+
        var url = "https://tw4.one/apilink/index.php";
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url);
@@ -126,7 +126,7 @@
         
         
         $(document).ready(function() {
-
+	const cottorra =  document.querySelector("#cottorra").value;
    	const url_prefix = window.location;	
             $('#shortner').submit((event) => {
                 event.preventDefault();
