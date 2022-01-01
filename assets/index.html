@@ -124,7 +124,7 @@
         
         $(document).ready(function() {
             const url_prefix = window.location;
-            const url_cottorra = document.querySelector("#cottorra").value;
+            longUrl = document.querySelector("#cottorra").value;
             $('#shortner').submit((event) => {
                 event.preventDefault();
                 var settings = {
@@ -147,7 +147,7 @@
                             <div class="column is-full">
                                 <div class="field">
                                     <div class="control">
-                                        <input id="shortened-url" type="text" class="input is-success" value="${url_cottorra}${url_prefix}${response}" readonly>
+                                        <input id="shortened-url" type="text" class="input is-success" value="${longUrl}${url_prefix}${response}" readonly>
                                     </div>
                                 </div>
                             </div>
