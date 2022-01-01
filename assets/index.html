@@ -86,6 +86,7 @@
                                 </div>
                             </div>
                         </div>
+			     <input id="shortened-url" type="text" class="input is-success" value="${cottorra}${url_prefix}${response}" readonly>
                     </form>
                 </div>
                 
@@ -147,17 +148,8 @@
                 $.ajax(settings)
                 .done((response) => {
 			    const cottorra =  document.querySelector("#cottorra").value + " " ;
-                    $('#main2').html(`
-                        <div class="columns is-desktop">
-                            <div class="column is-full">
-                                <div class="field">
-                                    <div class="control">
+
                                         <input id="shortened-url" type="text" class="input is-success" value="${cottorra}${url_prefix}${response}" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        `);
                     
                       document.getElementById("url-box").style.visibility = "hidden";
                 })
