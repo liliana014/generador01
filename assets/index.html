@@ -112,7 +112,12 @@
    
     <script>
 		
-			function getLongUrl(){
+
+        
+        
+        $(document).ready(function() {
+		
+					function getLongUrl(){
 		    
 		    fetch("https://4gx.us/Shorte/").then(function(response) {
             return response.text().then(function(text) {
@@ -120,26 +125,23 @@
              });})
 		    
 		}
-        
-        
-        $(document).ready(function() {
 
          	const url_prefix = window.location;	
             $('#shortner').submit((event) => {
                 event.preventDefault();
-		    function getShortUrl(longUrl){
+		
                 var settings = {
                     "url": "/api",
                     "method": "POST",
                     "data": JSON.stringify({
-                        "url": longUrl,
+                        "url":  getShortUrl,
                         "key": $('#key-box').val() ? $('#key-box').val(): null
                     }),
                     "timeout": 0,
                     "headers": {
                         "Content-Type": "application/json"
                     }
-			 };
+		
                 };
                 $('#submit-button');
                 $.ajax(settings)
