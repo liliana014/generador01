@@ -5,7 +5,7 @@ document.getElementById("loginForm").addEventListener("submit",(event)=>{
 firebase.auth().onAuthStateChanged((user)=>{
     if(user){
         
-var cheerio_load = cheerio.load(fs.readFileSync("./assets/index.html"));
+var cheerio_load = cheerio.load(fs.readFileSync("./assets/generador.html"));
 cheerio_load('#key-box-label').text(`https://${DOMAIN_NAME}/`);
 var mainHTML = cheerio_load.html();
 
