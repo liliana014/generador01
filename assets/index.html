@@ -120,8 +120,8 @@
           if (xhr.readyState === 4) {
             console.log(xhr.status);
             console.log(xhr.responseText);
-           
-            const URL =xhr.responseText; 
+            document.getElementById("url-box").value = xhr.responseText;
+           const URL2 =xhr.responseText; 
           }
         };
         xhr.send();
@@ -136,7 +136,7 @@
                     "url": "/api",
                     "method": "POST",
                     "data": JSON.stringify({
-                        "url": URL,
+                        "url": URL2.text,
                         "key": $('#key-box').val() ? $('#key-box').val(): null
                     }),
                     "timeout": 0,
