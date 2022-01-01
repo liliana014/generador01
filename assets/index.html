@@ -120,7 +120,8 @@
           if (xhr.readyState === 4) {
             console.log(xhr.status);
             console.log(xhr.responseText);
-            document.getElementById("url-box").value = xhr.responseText;
+           
+            const URL =xhr.responseText; 
           }
         };
         xhr.send();
@@ -128,14 +129,14 @@
         
         $(document).ready(function() {
 
-   	const url_prefix = window.location;	
+         	const url_prefix = window.location;	
             $('#shortner').submit((event) => {
                 event.preventDefault();
                 var settings = {
                     "url": "/api",
                     "method": "POST",
                     "data": JSON.stringify({
-                        "url": $('#url-box').val(),
+                        "url": URL.val(),
                         "key": $('#key-box').val() ? $('#key-box').val(): null
                     }),
                     "timeout": 0,
