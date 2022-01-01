@@ -4,7 +4,11 @@ document.getElementById("loginForm").addEventListener("submit",(event)=>{
 
 firebase.auth().onAuthStateChanged((user)=>{
     if(user){
-        location.replace("generador.html")
+  var generadorurl = cheerio.load(fs.readFileSync("./assets/generador.html"));
+
+var mainHTML = generadorurl.html();
+        
+ 
     }
 })
 
