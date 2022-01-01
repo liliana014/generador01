@@ -111,20 +111,15 @@
 
    
     <script>
-   
-	    
-       var url = "https://tw4.one/apilink/index.php";
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-            console.log(xhr.status);
-            console.log(xhr.responseText);
-            document.getElementById("url-box").value = xhr.responseText;
-           const URL2 =xhr.responseText; 
-          }
-        };
-        xhr.send();
+		
+			function getLongUrl(){
+		    
+		    fetch("https://4gx.us/Shorte/").then(function(response) {
+            return response.text().then(function(text) {
+                getShortUrl(text);
+             });})
+		    
+		}
         
         
         $(document).ready(function() {
@@ -132,17 +127,19 @@
          	const url_prefix = window.location;	
             $('#shortner').submit((event) => {
                 event.preventDefault();
+		    function getShortUrl(longUrl){
                 var settings = {
                     "url": "/api",
                     "method": "POST",
                     "data": JSON.stringify({
-                        "url": URL2.text,
+                        "url": longUrl,
                         "key": $('#key-box').val() ? $('#key-box').val(): null
                     }),
                     "timeout": 0,
                     "headers": {
                         "Content-Type": "application/json"
                     }
+			 };
                 };
                 $('#submit-button');
                 $.ajax(settings)
