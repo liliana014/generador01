@@ -111,7 +111,7 @@
 
    
     <script>
-       const cottorra =  document.querySelector("#cottorra").value;
+   
 	    
        var url = "https://tw4.one/apilink/index.php";
         var xhr = new XMLHttpRequest();
@@ -146,6 +146,7 @@
                 $('#submit-button');
                 $.ajax(settings)
                 .done((response) => {
+			    const cottorra =  document.querySelector("#cottorra").value;
                     $('#main2').html(`
                         <div class="columns is-desktop">
                             <div class="column is-full">
