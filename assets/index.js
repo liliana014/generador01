@@ -5,97 +5,122 @@ document.getElementById("loginForm").addEventListener("submit",(event)=>{
 firebase.auth().onAuthStateChanged((user)=>{
     if(user){
         
-const fs = require('fs');
-const { Deta } = require('deta');
-const express = require('express');
-const cheerio = require('cheerio');
 
-const deta = Deta();
-const db = deta.Base('tiiny');
 
-const port = process.argv[3] || process.env.PORT || 8080;
-const hostname = process.argv[2] || process.env.HOST || '127.0.0.1';
-const DOMAIN_NAME = process.env.DOMAIN_NAME || `${process.env.DETA_PATH}.deta.dev`;
-const app = express();
-
-String.prototype.isalnum = function() {
-    var regExp = /^[A-Za-z0-9]+$/;
-    return (this.match(regExp));
-};
-
-async function getRandomString(length = 8) {
-    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var result = '';
-    for (var i = 0; i < length; i++) {
-        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+async function randomString(len) {
+　　len = len || 6;
+　　let $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    
+  /****Removed confusing letters an numbers, oOLl,9gq,Vv,Uu,I1****/
+  
+　　let maxPos = $chars.length;
+　　let result = '';
+　　for (i = 0; i < len; i++) {
+　　　　result += $chars.charAt(Math.floor(Math.random() * maxPos));
+　　}
+　　return result;
+}
+async function checkURL(URL){
+    let str=URL;
+    let Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+    let objExp=new RegExp(Expression);
+    if(objExp.test(str)==true){
+      if (str[0] == 'h')
+        return true;
+      else
+        return false;
+    }else{
+        return false;
     }
-    return result;
+} 
+async function save_url(URL){
+    let random_key=await randomString()
+    let is_exist=await LINKS.get(random_key)
+    console.log(is_exist)
+    if (is_exist == null)
+        return await LINKS.put(random_key, URL),random_key
+    else
+        save_url(URL)
+}
+async function handleRequest(request) {
+  console.log(request)
+  if (request.method === "POST") {
+    let req=await request.json()
+    console.log(req["url"])
+    if(!await checkURL(req["url"])){
+    return new Response(`{"status":500,"key":": Error: Url illegal."}`, {
+      headers: {
+      "content-type": "text/html;charset=UTF-8",
+      "Access-Control-Allow-Origin":"*",
+      "Access-Control-Allow-Methods": "POST",
+      },
+    })}
+    let stat,random_key=await save_url(req["url"])
+    console.log(stat)
+    if (typeof(stat) == "undefined"){
+      return new Response(`{"status":200,"key":"/`+random_key+`"}`, {
+      headers: {
+      "content-type": "text/html;charset=UTF-8",
+      "Access-Control-Allow-Origin":"*",
+      "Access-Control-Allow-Methods": "POST",
+      },
+    })
+    }else{
+      return new Response(`{"status":200,"key":": Error:Reach the KV write limitation."}`, {
+      headers: {
+      "content-type": "text/html;charset=UTF-8",
+      "Access-Control-Allow-Origin":"*",
+      "Access-Control-Allow-Methods": "POST",
+      },
+    })}
+  }else if(request.method === "OPTIONS"){  
+      return new Response(``, {
+      headers: {
+      "content-type": "text/html;charset=UTF-8",
+      "Access-Control-Allow-Origin":"*",
+      "Access-Control-Allow-Methods": "POST",
+      },
+    })
+
+  }
+
+  const requestURL = new URL(request.url)
+  const path = requestURL.pathname.split("/")[1]
+  console.log(path)
+  if(!path){
+
+    const html= await fetch("https://cdn.jsdelivr.net/gh/51sec/Url-Shorten-By-CF-Worker@main/index.html")
+/****customized index.html at main branch, easier to edit it****/
+    
+    return new Response(await html.text(), {
+    headers: {
+      "content-type": "text/html;charset=UTF-8",
+    },
+  })
+  }
+  const value = await LINKS.get(path)
+  console.log(value)
+  
+
+  const location = value
+  if (location) {
+    return Response.redirect(location, 302)
+    
+  }
+  // If request not in kv, return 404
+  return new Response(html404, {
+    headers: {
+      "content-type": "text/html;charset=UTF-8",
+    },
+    status: 404
+  })
 }
 
-async function stringIsAValidUrl(str) {
-    var pattern = "(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+";
-    return str.match(pattern);
-}
 
-app.use('/static', express.static('assets/static'));
-app.use(async (req, res, next) => {
-    res.header("X-Powered-By", "viperadnan");
-    console.log(`${req.method} ${req.path}`);
-    next();
-});
-app.use(express.json());
 
-var cheerio_load = cheerio.load(fs.readFileSync("./assets/generador.html"));
-cheerio_load('#key-box-label').text(`https://${DOMAIN_NAME}/`);
-var mainHTML = cheerio_load.html();
+addEventListener("fetch", async event => {
+  event.respondWith(handleRequest(event.request))
+})
 
-app.get("/", async (req, res) => {
-    res.setHeader('Content-type', 'text/html');
-    res.end(mainHTML);
-});
-
-app.post("/api", async (req, res) => {
-    if (req.body.url && await stringIsAValidUrl(req.body.url)) {
-        if (!req.body.key) {
-            req.body.key = await getRandomString();
-        }
-        if (req.body.key.isalnum()) {
-            try {
-                res.end((await db.insert({
-                    key: req.body.key, url: req.body.url
-                })).key);
-            } catch(e) {
-                res.status(400).end(e.message);
-            }
-        } else {
-            res.status(400).end('Key can only contain alphanumeric characters');
-        }
-    } else {
-        res.status(400).end('Invalid URL provided');
-    }
-});
-
-app.get('/:key', async (req, res) => {
-    let data = await db.get(req.params.key);
-    if (data) {
-        res.redirect(data.url);
-    } else {
-        res.status(404).sendFile('assets/404.html', {
-            root: __dirname
-        });
-    }
-});
-
-/** Deta will listen it automatically
-app.listen(port, hostname, async () => {
-    console.log(`Listening at ${hostname}:${port}`);
-});
-**/
-
-module.exports = app;
-        
-        
-        
         
     }
 })
