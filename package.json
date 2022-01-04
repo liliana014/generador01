@@ -1,5 +1,5 @@
 {
-  "name": "tiiny",
+  "name": "Generador",
   "version": "0.1.0",
   "description": "Shorten your long URLs in just a click",
   "main": "index.js",
@@ -13,7 +13,7 @@
   "keywords": [
     "url",
     "url-shortner",
-    "tiiny",
+    "Generador",
     "shortner",
     "deta"
   ],
