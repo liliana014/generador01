@@ -38,7 +38,7 @@ app.use(async (req, res, next) => {
 });
 app.use(express.json());
 
-var cheerio_load = cheerio.load(fs.readFileSync("./assets/n1/index.html"));
+var cheerio_load = cheerio.load(fs.readFileSync("./assets/n1/ge.html"));
 cheerio_load('#key-box-label').text(`https://${DOMAIN_NAME}/`);
 var mainHTML = cheerio_load.html();
 
